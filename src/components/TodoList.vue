@@ -2,11 +2,11 @@
   <div>
     <form @submit.prevent="onSubmit">
       <input v-model="name" type="text">
-      <input v-model="age"  type="text">
+      <input v-model="date"  type="date">
 
        <button type="submit">Add</button>
     </form>
-    <TodoItem v-for="(item, index) in items" :key="`list.${index}`" :name="item.name" :age="item.age" :completed="item.completed"/>
+    <TodoItem v-on:del="onDelete" v-for="(item, index) in items" :key="`list.${index}`" :id="item.id" :name="item.name" :date="item.date" :completed="item.completed"/>
     <div>
       Count: {{items.length}}
     </div>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import uuid from 'uuid';
 import TodoItem from "@/components/TodoItem";
 export default {
   name: "TodoList",
@@ -23,34 +24,20 @@ export default {
   data(){
     return {
       name: undefined,
-      age: undefined,
+      date: undefined,
       completed: false,
-      items: [
-        {
-          name: 'Vasja',
-          age: "34",
-          completed: true
-        },
-        {
-          name: 'Petja',
-          age: "35",
-          completed:false
-        },
-        {
-          name: 'Task 3',
-          age: "45",
-          completed:true
-        }
-      ]
+      items: [ ]
     }
   },
     
   methods: {
     onSubmit() {
-      this.items.push({name:this.name, age:this.age, completed:true})
+      this.items.push({id:uuid.v4(), name:this.name, date:this.date, completed:true})
+    },
+    onDelete(id){
+      this.items= this.items.filter(items => items.id !==id)
     }
-   
-  
+    
   }
 }
 </script>

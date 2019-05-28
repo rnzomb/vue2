@@ -2,16 +2,17 @@
   <div class="item">
     <input v-model="completed" type="checkbox">
     <span :class="getClass">
+      {{id}}
       {{name}}
-      {{age}}
+      {{date}}
     </span>
-    <button class="button">delete</button>
+    <button @click="delElement" class="button" type="button">delete</button>
   </div>
 </template>
 <script>
 export default {
   name: "TodoItem",
-  props: ["name", "age", "completed"],
+  props: ["id", "name", "date", "completed"],
   computed: {
     getClass() {
       if (this.completed) {
@@ -19,6 +20,12 @@ export default {
       } else {
         return undefined
       }
+    }
+  },
+  methods:{
+    delElement() {
+      this.$emit ('del',this.id) 
+
     }
   }
 }
