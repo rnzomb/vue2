@@ -1,22 +1,29 @@
 <template>
   <div class="item">
-    <input v-model="completed" type="checkbox">
+    <input v-model="isCompleted" type="checkbox"/>
     <span :class="getClass">
       {{id}}
       {{name}}
       {{date}}
     </span>
-    <button @click="delElement" class="button" type="button">delete</button>
+   
+    <b-button @click="delElement" pill variant="danger" type="button">delete</b-button>
   </div>
 </template>
 <script>
 export default {
   name: "TodoItem",
   props: ["id", "name", "date", "completed"],
+  
+  data(){
+    return {
+      isCompleted:false
+    }
+  },
   computed: {
     getClass() {
-      if (this.completed) {
-        return "completed"
+      if (this.isCompleted) {
+        return "completedClass"
       } else {
         return undefined
       }
@@ -32,22 +39,18 @@ export default {
 </script>
     
 <style scoped>
-.completed {
+.completedClass {
   text-decoration-line: line-through;
 }
 .item
 {
   border: 1px solid black;
-  background-color: grey;
-  margin: 2px;
+  background-color: #ECF6CE;
+  margin: 20px 10px 5px 20px;
   padding: 2px
 
 }
 .item:hover {
   background-color: red;
-}
-.button{
-  margin: 5px;
-  border-radius: 70%;
 }
 </style>

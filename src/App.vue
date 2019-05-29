@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <AddForm v-on:addItems="addItem"/>
-    <TodoList v-on:dele="onDelete" :items="items" />
+    <b-container>
+     <AddForm v-on:addItems="addItem"/>
+      <TodoList v-on:dele="onDelete" :items="items" />
+    </b-container>
   </div>
 </template>
 
