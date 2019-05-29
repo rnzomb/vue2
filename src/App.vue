@@ -1,36 +1,34 @@
 <template>
   <div id="app">
-   <TodoList/>
+    <AddForm v-on:addItems="addItem"/>
+    <TodoList v-on:dele="onDelete" :items="items" />
   </div>
 </template>
 
 <script>
 import TodoList from "@/components/TodoList"
-
+import AddForm from "@/components/AddForm"
 export default {
   name: 'app',
   components: {
+    AddForm,
     TodoList
     
     },
     data (){
       return {
-        todos: [
-          {
-            name: "Aleksei",
-            date: "1985"
-          },
-          {
-            name: "Roman",
-            date: "1984"
-          },
-          {
-            name: "Peter",
-            date: "1964"
-          }
+        items: [
 
-        ]
+        ]       
       }
+    },
+    methods:{
+      addItem(newItem){
+        this.items = [...this.items, newItem]
+      },
+      onDelete(id){
+      this.items= this.items.filter(items => items.id !==id)
+    }
     }
 }
 </script>
