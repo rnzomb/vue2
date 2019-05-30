@@ -21,7 +21,11 @@ export default {
   components: {
     TodoItem
   },
-  props: ["items"],
+  computed:{
+    items(){
+      return this.$store.getters.getTodos
+    } 
+  },
 
   methods: {
     onSubmit() {

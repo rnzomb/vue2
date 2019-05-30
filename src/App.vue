@@ -1,9 +1,9 @@
 <template>
   <div  class="font-weight-bold" id="app">
     <b-container class="text-info">
-      <AddForm v-on:addItems="addItem"/>
+      <AddForm/>
       <hr>
-      <TodoList v-on:dele="onDelete" :items="items"/>
+      <TodoList/>
     </b-container>
   </div>
 </template>
@@ -17,18 +17,22 @@ export default {
     AddForm,
     TodoList
   },
-  data() {
-    return {
-      items: []
-    }
-  },
+  
   methods: {
-    addItem(newItem) {
-      this.items = [...this.items, newItem]
-    },
-    onDelete(id) {
-      this.items = this.items.filter(items => items.id !== id)
-    }
+
+  },
+  created() {
+    /*
+    this.$store.dispatch('todoAdded',{
+      id:'001',
+      name: 'test',
+      completed: "false",
+      date: "sosjlisj"
+    })
+    */
+
+    //const items = this.$store.getters.getTodos
+    //console.log(items)
   }
 }
 </script>

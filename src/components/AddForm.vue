@@ -47,7 +47,7 @@ export default {
         date: this.date,
         completed: this.completed
       }
-      this.$emit("addItems", newItem)
+      this.$store.dispatch('todoAdded',newItem)
     }
   }
 }

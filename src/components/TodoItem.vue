@@ -2,11 +2,11 @@
   <b-container class="mb-1 bg-light">
     <b-row class="item" calign-h="between">
       <b-col align-self="start" col lg="1">
-        <b-form-checkbox v-model="isCompleted" switch></b-form-checkbox>
+        <b-form-checkbox @change="setStatus" :checked="completed" switch></b-form-checkbox>
       </b-col>
 
-      <span :class="getClass">
-        <template v-if="isCompleted">
+      <span>
+        <template v-if="completed">
           <s>
             <b-col>
               {{id}}
@@ -38,22 +38,22 @@ export default {
 
   data() {
     return {
-      isCompleted: false,
       modalShow: false
     }
   },
   computed: {
-    getClass() {
-      if (this.isCompleted) {
-        return "completedClass"
-      } else {
-        return undefined
-      }
-    }
+     
   },
   methods: {
     delElement() {
-      this.$emit("del", this.id)
+      this.$store.dispatch('todoRemoved', this.id)
+    },
+    setStatus(e) {
+      const payload = {
+        id: this.id,
+        status: e
+      }
+      this.$store.dispatch('statusUpdated', payload)
     }
   }
 }
