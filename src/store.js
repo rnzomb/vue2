@@ -28,7 +28,7 @@ const store= new Vuex.Store ({
        state.todos = state.todos.map(item => {
          if(item.id===id) {
            const newitem = item
-           newitem.completed = status
+           newitem.done = status
            return newitem 
          } else {
            return item   
@@ -46,6 +46,10 @@ const store= new Vuex.Store ({
     },
     statusUpdated ({commit}, payload) {
       commit('setStatus', payload)
+    },
+    todoUpdated  ({commit}, item) {
+      commit('removeTodo', item.id)
+      commit('addTodo', item)
     }
 
   },

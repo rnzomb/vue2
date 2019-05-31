@@ -7,7 +7,7 @@
       :id="item.id"
       :name="item.name"
       :date="item.date"
-      :completed="item.completed"
+      :done="item.done"
     />
     <div>Count: {{items.length}}</div>
   </div>
@@ -33,9 +33,8 @@ export default {
         id: uuid.v4(),
         name: this.name,
         date: this.date,
-        completed: true
+        done: true
       })
-      this.$router.push('/')
     },
 
     del(id) {

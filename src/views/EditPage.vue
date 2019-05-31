@@ -1,17 +1,17 @@
 <template>
   <div  class="font-weight-bold" id="app">
     <b-container class="text-info">
-      <AddForm/>
+      <EditForm/>
     </b-container>
   </div>
 </template>
 
 <script>
-import AddForm from "@/components/AddForm"
+import EditForm from "@/components/EditForm"
 export default {
   name: "app",
   components: {
-    AddForm
+    EditForm
   },
   
   methods: {

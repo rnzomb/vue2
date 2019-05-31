@@ -22,7 +22,7 @@ export default {
     this.$store.dispatch('todoAdded',{
       id:'001',
       name: 'test',
-      completed: "false",
+      done: "false",
       date: "sosjlisj"
     })
     */

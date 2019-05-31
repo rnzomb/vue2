@@ -2,26 +2,26 @@
   <b-container class="mb-1 bg-light">
     <b-row class="item" calign-h="between">
       <b-col align-self="start" col lg="1">
-        <b-form-checkbox @change="setStatus" :checked="completed" switch></b-form-checkbox>
+        <b-form-checkbox @change="setStatus" :checked="done" switch></b-form-checkbox>
       </b-col>
 
       <span>
-        <template v-if="completed">
-          <s>
+        <b-link :to="`/edit/${id}`">
+          <template v-if="done">
+            <s>
+              <b-col>
+                {{name}}
+                {{date}}
+              </b-col>
+            </s>
+          </template>
+          <template v-else>
             <b-col>
-              {{id}}
               {{name}}
               {{date}}
             </b-col>
-          </s>
-        </template>
-        <template v-else>
-          <b-col>
-            {{id}}
-            {{name}}
-            {{date}}
-          </b-col>
-        </template>
+          </template>
+        </b-link>
       </span>
       <b-col align-self="end" col lg="1">
         <b-button @click="modalShow = !modalShow" pill variant="danger" type="button">delete</b-button>
@@ -34,7 +34,7 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ["id", "name", "date", "completed"],
+  props: ["id", "name", "date", "done"],
 
   data() {
     return {

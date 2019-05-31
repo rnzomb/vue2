@@ -3,7 +3,7 @@
     <div id="nav">
       <b-button to="/">Home</b-button> |
       <b-button to="/about">About</b-button> |
-      <b-button to="/addPage">AddPage</b-button>
+      <b-button to="/add">AddPage</b-button>
     </div>
     <router-view/>
   </div>
