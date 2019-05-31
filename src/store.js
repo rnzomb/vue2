@@ -25,7 +25,6 @@ const store= new Vuex.Store ({
      setStatus(state, payload) {
        const id = payload.id
        const status = payload.status
-       console.log(id + ',' + status)
        state.todos = state.todos.map(item => {
          if(item.id===id) {
            const newitem = item
