@@ -1,9 +1,10 @@
 <template>
-  <div id="app">
+  <div class="text-center" id="app">
     <div id="nav">
       <b-button to="/">Home</b-button> |
-      <b-button to="/about">About</b-button> |
+      <b-button to="/about">About</b-button> |  
       <b-button to="/add">AddPage</b-button>
+      <hr>
     </div>
     <router-view/>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div  class="font-weight-bold" id="app">
+  <div class="font-weight-bold" id="app">
     <b-container class="text-info">
       <TodoList/>
     </b-container>

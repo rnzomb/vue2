@@ -3,7 +3,7 @@
 
   <b-form @submit.prevent="onSubmit">
     <b-form-group description="Name sjuda" label="Name" label-for="fieldset-1">
-      <b-form-input id="fieldset-1" placeholder="Your Name" v-model="name" type="text"/>
+      <b-form-input id="fieldset-1" required="true" placeholder="Your Name" v-model="name" type="text"/>
     </b-form-group>
 
     <b-form-group
@@ -12,7 +12,7 @@
       label="Enter your Date"
       label-for="fieldset-2"
     >
-      <b-form-input id="fieldset-2" v-model="date" type="date"/>
+      <b-form-input id="fieldset-2" required="true" v-model="date" type="date"/>
     </b-form-group>
 
     <b-row align-h="center">

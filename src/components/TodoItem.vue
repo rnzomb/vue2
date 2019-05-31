@@ -1,39 +1,44 @@
 <template>
-  <b-container class="mb-1 bg-light">
-    <b-row class="item" calign-h="between">
-      <b-col align-self="start" col lg="1">
-        <b-form-checkbox @change="setStatus" :checked="done" switch></b-form-checkbox>
+  <b-container class="mb-2 bg-light">
+    <b-row class="item" >
+     
+      <b-col>
+        <b-form-checkbox class="text-left" @change="setStatus" :checked="done" switch></b-form-checkbox>
       </b-col>
 
-      <span>
-        <b-link :to="`/edit/${id}`">
-          <template v-if="done">
-            <s>
-              <b-col>
+       <b-col class="text-left">
+          <span :class="getClass">
+            <b-link :to="`/edit/${id}`">
                 {{name}}
+            </b-link>
+          </span>
+        </b-col>
+      
+        <b-col class="text-right">
+          <span :class="getClass">
+            <b-link :to="`/edit/${id}`">
                 {{date}}
-              </b-col>
-            </s>
-          </template>
-          <template v-else>
-            <b-col>
-              {{name}}
-              {{date}}
-            </b-col>
-          </template>
-        </b-link>
-      </span>
-      <b-col align-self="end" col lg="1">
-        <b-button @click="modalShow = !modalShow" pill variant="danger" type="button">delete</b-button>
+            </b-link>
+          </span>
+        </b-col>
+      
+      <b-col class="text-right" >
+        <b-button @click="modalShow = !modalShow" type="button"><v-icon name="trash-alt"/></b-button>
       </b-col>
+   
     </b-row>
     <b-modal @ok="delElement" v-model="modalShow">Vy uvereny, udalit?!</b-modal>
   </b-container>
 </template>
 
 <script>
+import VIcon from "vue-awesome/components/Icon"
+import "vue-awesome/icons/"
 export default {
   name: "TodoItem",
+  components: {
+    VIcon
+  },
   props: ["id", "name", "date", "done"],
 
   data() {
@@ -42,9 +47,16 @@ export default {
     }
   },
   computed: {
-     
+    getClass() {
+      if (this.done) {
+        return "completed"
+      } else {
+        return undefined
+      }  
+    }
   },
   methods: {
+
     delElement() {
       this.$store.dispatch('todoRemoved', this.id)
     },
@@ -58,15 +70,14 @@ export default {
   }
 }
 </script>
+<style scoped>
 
-
- <style scoped>
+.completed {
+  text-decoration-line: line-through;
+}
 .item
 {
-  border: 1px solid black;
-  background-color: #ECF6CE;
-  margin: 20px 10px 5px 20px;
-  padding: 2px
+  
 }
 .item:hover {
   background-color:#3ADF00;
