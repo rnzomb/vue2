@@ -1,8 +1,6 @@
 <template>
   <div  class="font-weight-bold" id="app">
     <b-container class="text-info">
-      <AddForm/>
-      <hr>
       <TodoList/>
     </b-container>
   </div>
@@ -10,11 +8,9 @@
 
 <script>
 import TodoList from "@/components/TodoList"
-import AddForm from "@/components/AddForm"
 export default {
   name: "app",
   components: {
-    AddForm,
     TodoList
   },
   

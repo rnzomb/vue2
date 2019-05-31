@@ -48,6 +48,7 @@ export default {
         completed: this.completed
       }
       this.$store.dispatch('todoAdded',newItem)
+      this.$router.push('/')
     }
   }
 }

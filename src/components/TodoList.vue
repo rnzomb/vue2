@@ -35,6 +35,7 @@ export default {
         date: this.date,
         completed: true
       })
+      this.$router.push('/')
     },
 
     del(id) {
