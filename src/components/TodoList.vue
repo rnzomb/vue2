@@ -1,16 +1,21 @@
 <template>
-  <div>
-    <TodoItem
-      v-on:del="del"
-      v-for="(item, index) in items"
-      :key="`list.${index}`"
-      :id="item.id"
-      :name="item.name"
-      :date="item.date"
-      :done="item.done"
-    />
-    <div>Count: {{items.length}}</div>
-  </div>
+  
+    <div>
+      <transition-group name="animation" tag="div">
+        <div v-for="item in items" :key="`todo-${item.id}`">
+          <TodoItem
+          class="animation-item"
+            v-on:del="del"                      
+            :id="item.id"
+            :name="item.name"
+            :date="item.date"
+            :done="item.done"
+          />
+        </div>
+      </transition-group>
+      <div>Count: {{items.length}}</div>  
+    </div>
+  
 </template>
 
 <script>
@@ -40,9 +45,19 @@ export default {
     del(id) {
       this.$emit("dele", id)
     }
-  }
+  },
 }
 </script>
-
-
-  
+<style scoped>
+.animation-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.animation-enter-active, .animation-leave-active {
+  transition: all 1s;
+}
+.animation-enter, .animation-leave-to /* .list-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(50px);
+}
+</style>

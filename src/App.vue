@@ -6,7 +6,26 @@
       <b-button to="/add">AddPage</b-button>
       <hr>
     </div>
-    <router-view/>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>      
   </div>
 </template>
 
+<style scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.1s;
+}
+
+.fade-enter{
+  transform: scale(1.1);
+  opacity: 0;
+}
+.fade-leave-to
+ {
+   transform: scale(0.8);
+   opacity: 0;
+}
+
+</style>

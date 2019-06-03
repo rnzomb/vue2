@@ -1,34 +1,36 @@
 <template>
+
   <b-container class="mb-2 bg-light">
+
     <b-row class="item" >
-     
       <b-col>
         <b-form-checkbox class="text-left" @change="setStatus" :checked="done" switch></b-form-checkbox>
       </b-col>
-
        <b-col class="text-left">
-          <span :class="getClass">
+          <div :class="getClass">
             <b-link :to="`/edit/${id}`">
                 {{name}}
             </b-link>
-          </span>
+          </div>
         </b-col>
       
         <b-col class="text-right">
-          <span :class="getClass">
+          <div :class="getClass">
             <b-link :to="`/edit/${id}`">
                 {{date}}
             </b-link>
-          </span>
+          </div>
         </b-col>
       
       <b-col class="text-right" >
         <b-button @click="modalShow = !modalShow" type="button"><v-icon name="trash-alt"/></b-button>
       </b-col>
-   
+ 
     </b-row>
+    
     <b-modal @ok="delElement" v-model="modalShow">Vy uvereny, udalit?!</b-modal>
   </b-container>
+ 
 </template>
 
 <script>
@@ -43,7 +45,7 @@ export default {
 
   data() {
     return {
-      modalShow: false
+      modalShow: false,
     }
   },
   computed: {
@@ -56,6 +58,7 @@ export default {
     }
   },
   methods: {
+    
 
     delElement() {
       this.$store.dispatch('todoRemoved', this.id)

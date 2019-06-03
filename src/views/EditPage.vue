@@ -13,10 +13,9 @@ export default {
   components: {
     EditForm
   },
-  
   methods: {
-
   }
- 
 }
 </script>
+
+
