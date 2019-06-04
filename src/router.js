@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import PageNotFound from '@/views/PageNotFound'
 import EditPage from '@/views/EditPage'
+import Profile from '@/views/Profile'
 
 Vue.use(Router)
 
@@ -37,6 +38,12 @@ export default new Router({
       path: '/edit/:id',
       name: 'editPage',
       component: EditPage
+    },
+    {
+      path: '/profile',
+      name: 'profilePage',
+      component: Profile
     }
+
   ]
 })

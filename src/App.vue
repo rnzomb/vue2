@@ -3,7 +3,8 @@
     <div id="nav">
       <b-button to="/">Home</b-button> |
       <b-button to="/about">About</b-button> |  
-      <b-button to="/add">AddPage</b-button>
+      <b-button to="/add">AddPage</b-button>  |
+      <b-button to="/profile/">Profile</b-button>
       <hr>
     </div>
     <transition name="fade" mode="out-in">
