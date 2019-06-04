@@ -34,7 +34,11 @@ const store= new Vuex.Store ({
            return item   
          }
        })
-     }    
+     },
+     updateTodo(state, item){
+      state.todos = state.todos.map(i => i.id === item.id ? item : i)
+     }
+     
   },
   
   actions: {                                      //sobytija       asinhronno
@@ -48,8 +52,9 @@ const store= new Vuex.Store ({
       commit('setStatus', payload)
     },
     todoUpdated  ({commit}, item) {
-      commit('removeTodo', item.id)
-      commit('addTodo', item)
+      commit ('updateTodo', item)
+      //commit('removeTodo', item.id)
+     // commit('addTodo', item)
     }
 
   },
