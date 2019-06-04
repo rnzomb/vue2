@@ -1,15 +1,14 @@
-<template>
-  <b-form-input @input="onInput" :value="value" type="email"/>
-</template>
-
 <script> 
+import TextInput from "@/components/input/TextInput"
 export default {
   name: "EmailInput",
-  props: ['value'],
-  methods: {
-    onInput(v) {
-      this.$emit('input',v)
-    }     
+  extends: TextInput,
+  props: {
+    type: {
+      type: String,
+      required: false,
+      default: 'email'      
+    }
   }
 }
 </script>

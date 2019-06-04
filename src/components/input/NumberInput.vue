@@ -1,15 +1,14 @@
-<template>
-  <b-form-input @input="onInput" :value="value" type="number"/>
-</template>
-
-<script>
+<script> 
+import TextInput from "@/components/input/TextInput"
 export default {
   name: "NumberInput",
-  props: ['value'],
-  methods: {
-    onInput(v) {
-      this.$emit('input',v)
-    }     
-  } 
+  extends: TextInput,
+  props: {
+    type: {
+      type: String,
+      required: false,
+      default: 'number'      
+    }
+  }
 }
 </script>

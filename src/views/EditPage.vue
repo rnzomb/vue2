@@ -1,5 +1,5 @@
 <template>
-  <div  class="font-weight-bold" id="app">
+  <div class="text-center font-weight-bold" id="app">
     <b-container class="text-info">
       <EditForm/>
     </b-container>
