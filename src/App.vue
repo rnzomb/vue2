@@ -4,7 +4,9 @@
       <b-button to="/">{{$t('menu_home')}}</b-button> |
       <b-button to="/about">{{$t('menu_about')}}</b-button> |  
       <b-button to="/add">{{$t('menu_add')}}</b-button>  |
-      <b-button to="/profile/">{{$t('menu_prof')}}</b-button>
+      <b-button to="/profile/">{{$t('menu_prof')}}</b-button> |
+      <b-button @click.prevent="setLanguage('en')">English</b-button> |
+      <b-button @click.prevent="setLanguage('ru')">Russian</b-button>
       <hr>
     </div>
     <transition name="fade" mode="out-in">
@@ -12,6 +14,17 @@
     </transition>      
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    setLanguage(locale) {
+      this.$i18n.locale=locale
+    }
+  }
+}
+</script>
+
 
 <style scoped>
 
