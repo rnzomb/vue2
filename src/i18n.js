@@ -6,7 +6,7 @@ import localeEn from '@/locale/en.json'
 import localeRu from '@/locale/ru.json'
 
 const i18n = new VueI18n ({
-  locale:'ru',
+  locale:'en',
   callbacklocale:'en',
   messages: {
     en: localeEn,

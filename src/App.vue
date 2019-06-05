@@ -5,8 +5,8 @@
       <b-button to="/about">{{$t('menu_about')}}</b-button> |  
       <b-button to="/add">{{$t('menu_add')}}</b-button>  |
       <b-button to="/profile/">{{$t('menu_prof')}}</b-button> |
-      <b-button @click.prevent="setLanguage('en')">English</b-button> |
-      <b-button @click.prevent="setLanguage('ru')">Russian</b-button>
+      <b-button :variant="getLangClass('en')" @click.prevent="setLanguage('en')">English</b-button> |
+      <b-button :variant="getLangClass('ru')" @click.prevent="setLanguage('ru')">Russian</b-button>
       <hr>
     </div>
     <transition name="fade" mode="out-in">
@@ -17,9 +17,24 @@
 
 <script>
 export default {
+  mounted() {
+      if (this.currentLocale) {
+        this.$i18n.locale=this.currentLocale
+      } 
+    
+  },
+  computed: {
+    currentLocale(){
+      return this.$store.getters.getLanguage
+    }
+  },
   methods: {
     setLanguage(locale) {
       this.$i18n.locale=locale
+      this.$store.dispatch('saveLanguage', this.$i18n.locale)
+    },
+    getLangClass(lang) {
+      return this.currentLocale === lang ? 'warning' : undefined
     }
   }
 }

@@ -6,38 +6,46 @@ Vue.use(Vuex)
 
 const store= new Vuex.Store ({
   state: {                                        // otvechaet za dannye, kot budut hranitsja v storage
-    todos: []
+    todos: [],
+    locale: 'en'
   },
 
   getters: {
     getTodos:state=>{
       return state.todos
+    },
+    getLanguage:state=>{
+      return state.locale
     }
   },
 
   mutations: {                                    //otvechaet za izmenenie state         sinhronno
-     addTodo(state, item){
+
+    saveLocale(state, langValue){
+      state.locale = langValue
+    },
+    addTodo(state, item){
        state.todos.push(item)
-     },
-     removeTodo(state, id) {
-       state.todos= state.todos.filter(state => state.id !== id)
-     },     
-     setStatus(state, payload) {
-       const id = payload.id
-       const status = payload.status
-       state.todos = state.todos.map(item => {
-         if(item.id===id) {
-           const newitem = item
-           newitem.done = status
-           return newitem 
-         } else {
-           return item   
-         }
-       })
-     },
-     updateTodo(state, item){
+    },
+    removeTodo(state, id) {
+      state.todos= state.todos.filter(state => state.id !== id)
+    },
+    setStatus(state, payload) {
+      const id = payload.id
+      const status = payload.status
+      state.todos = state.todos.map(item => {
+        if(item.id===id) {
+          const newitem = item
+          newitem.done = status
+          return newitem 
+        } else {
+          return item   
+        }
+      })
+    },
+    updateTodo(state, item){
       state.todos = state.todos.map(i => i.id === item.id ? item : i)
-     }
+    }
      
   },
   
@@ -55,6 +63,9 @@ const store= new Vuex.Store ({
       commit ('updateTodo', item)
       //commit('removeTodo', item.id)
      // commit('addTodo', item)
+    },
+    saveLanguage({commit}, lang){
+      commit('saveLocale', lang)
     }
 
   },
