@@ -13,7 +13,7 @@
           />
         </div>
       </transition-group>
-      <div>Count: {{items.length}}</div>  
+      <div>{{$t('field_count')}}: {{items.length}}</div>  
     </div>
   
 </template>
@@ -27,9 +27,9 @@ export default {
     TodoItem
   },
   computed:{
-    items(){
+    items() {
       return this.$store.getters.getTodos
-    } 
+    }
   },
 
   methods: {

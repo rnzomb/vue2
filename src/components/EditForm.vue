@@ -2,8 +2,8 @@
 
 <b-container>
     <b-form @submit.prevent="onSubmit">
-      <TextInput v-model="name" :required="true" id="firstName" label="Name" description="Enter your name"></TextInput>     <!--horizontallabel - label sverhu-->
-      <DateInput v-model="date" :required="true" id="Date" label="Date" description="Enter your Date"></DateInput>
+      <TextInput v-model="name" :required="true" id="firstName" :label="fieldName" :description="msgName"></TextInput>     <!--horizontallabel - label sverhu-->
+      <DateInput v-model="date" :required="true" id="Date" :label="fieldDate" :description="msgDate"></DateInput>
 
       <template v-if="id!= undefined"> 
         <b-button class="top-cover" variant="success" pill type="submit">
@@ -63,6 +63,17 @@ export default {
   computed:{
     id() {
       return this.$route.params.id
+    },
+    fieldName() {
+      return this.$i18n.t('field_name')
+    },
+    fieldDate() {
+      return this.$i18n.t('field_date')
+    },msgName() {
+      return this.$i18n.t('msg_name')
+    },
+    msgDate() {
+      return this.$i18n.t('msg_date')
     }
   },
     mounted() {

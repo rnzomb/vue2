@@ -1,0 +1,28 @@
+{
+  "menu_home": "Home",
+  "menu_about": "About",
+  "menu_add": "Add Page",
+  "menu_prof": "Profile",
+
+  "head_about": "This is an about page",
+
+
+  
+  "field_name": "Name",
+  "field_age": "Age",
+  "field_email": "Email",
+  "field_tel": "Phone",
+  "field_date": "Date",
+  "field_count": "Count",
+
+  "msg_name": "Enter your name",
+  "msg_age": "Enter your age",
+  "msg_email": "Enter your Email",
+  "msg_tel": "Enter your phone number",
+  "msg_date": "Enter your date",
+
+  "btn_subm": "Submit"
+
+
+
+}

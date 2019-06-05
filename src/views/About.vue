@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="text-center font-weight-bold">
+    <h1>{{ $t('head_about')}}</h1>
+  
+  {{ $t('field_name')}}
   </div>
 </template>

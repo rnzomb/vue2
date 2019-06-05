@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="text-center" id="nav">
-      <b-button to="/">Home</b-button> |
-      <b-button to="/about">About</b-button> |  
-      <b-button to="/add">AddPage</b-button>  |
-      <b-button to="/profile/">Profile</b-button>
+      <b-button to="/">{{$t('menu_home')}}</b-button> |
+      <b-button to="/about">{{$t('menu_about')}}</b-button> |  
+      <b-button to="/add">{{$t('menu_add')}}</b-button>  |
+      <b-button to="/profile/">{{$t('menu_prof')}}</b-button>
       <hr>
     </div>
     <transition name="fade" mode="out-in">
