@@ -1,38 +1,29 @@
 <template>
 
+<b-container>
+    <b-form @submit.prevent="onSubmit">
+      <TextInput v-model="name" horizontalLabel :required="true" id="firstName" label="Name" description="Enter your name"></TextInput>
+      <DateInput v-model="date" horizontalLabel :required="true" id="Date" label="Date" description="Enter your Date"></DateInput>
 
-  <b-form @submit.prevent="onSubmit">
-    <b-form-group description="Name sjuda" label="Name" label-for="fieldset-1">
-      <b-form-input id="fieldset-1" required placeholder="Your Name" v-model="name" type="text"/>
-    </b-form-group>
-
-    <b-form-group
-      id="fieldset-2"
-      description="Date sjuda"
-      label="Enter your Date"
-      label-for="fieldset-2"
-    >
-      <b-form-input id="fieldset-2" required v-model="date" type="date"/>
-    </b-form-group>
-
-    <b-row align-h="center">
-    <template v-if="id!= undefined"> 
-      <b-button class="top-cover" variant="success" pill type="submit">
-        <v-icon name="edit"/>
-      </b-button>
+      <template v-if="id!= undefined"> 
+        <b-button class="top-cover" variant="success" pill type="submit">
+          <v-icon name="edit"/>
+        </b-button>
       </template>
       <template v-else>
         <b-button class="top-cover" variant="success" pill type="submit">
-        <v-icon name="plus"/>
-      </b-button>
+          <v-icon name="plus"/>
+        </b-button>
       </template>
-    </b-row>
-  </b-form>
-
+          
+    </b-form>
+  </b-container>
   
 </template>
 
 <script>
+import TextInput from "@/components/input/TextInput"
+import DateInput from "@/components/input/DateInput"
 import VIcon from "vue-awesome/components/Icon"
 import "vue-awesome/icons/edit"
 import "vue-awesome/icons/plus"
@@ -41,7 +32,9 @@ import uuid from "uuid"
 export default {
   name: "EditForm",
   components: {
-    VIcon
+    VIcon,
+    TextInput,
+    DateInput
   },
   data() {
     return {

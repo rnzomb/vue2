@@ -1,5 +1,5 @@
 <template>
-  <b-form-group label-cols-sm="2" :label="label" :label-for="id" :description="description">
+  <b-form-group :label-cols-sm="horizontalLabel ? '2': undefined" :label="label" :label-for="id" :description="description">
     <b-form-input @input="onInput" :value="value" :type="type" :required="required" :id="id" :name="name"/>
   </b-form-group>
 </template>
@@ -40,6 +40,10 @@ export default {
       type: String,
       required: false,
       default: undefined
+    },
+    horizontalLabel: {
+      type: Boolean,
+      required: false
     }
   },
   methods: {
