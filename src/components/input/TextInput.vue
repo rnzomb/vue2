@@ -1,5 +1,5 @@
 <template>
-  <b-form-group label-cols-sm="2" :label="label" :label-for="id">
+  <b-form-group label-cols-sm="2" :label="label" :label-for="id" :description="description">
     <b-form-input @input="onInput" :value="value" :type="type" :required="required" :id="id" :name="name"/>
   </b-form-group>
 </template>
@@ -32,6 +32,11 @@ export default {
       default: undefined
     },
     label: {
+      type: String,
+      required: false,
+      default: undefined
+    },
+    description: {
       type: String,
       required: false,
       default: undefined

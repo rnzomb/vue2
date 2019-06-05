@@ -1,11 +1,11 @@
 <template>
-  <b-container class="primer">
+  <b-container>
     <b-form @submit.prevent="onSubmit">
         <!--{{ form.name }}-->
-      <TextInput v-model="form.name" :required="true" id="firstName" label="Name"></TextInput>
-      <NumberInput v-model="form.age" :required="true" id="Age" label="Age"></NumberInput>
-      <EmailInput v-model="form.email" :required="true" id="email" label="Email"></EmailInput>
-      <PhoneInput v-model="form.phone" :required="true" id="phoneNumber" label="Phone"></PhoneInput>
+      <TextInput v-model="form.name" :required="true" id="firstName" label="Name" description="Enter your name"></TextInput>
+      <NumberInput v-model="form.age" :required="true" id="Age" label="Age" description="Enter your age"></NumberInput>
+      <EmailInput v-model="form.email" :required="true" id="email" label="Email" description="Enter your Email"></EmailInput>
+      <PhoneInput v-model="form.phone" :required="true" id="phoneNumber" label="Phone" description="Enter your phone number"></PhoneInput>
     
       <b-button variant="success" pill type="submit">Submit</b-button>
           
