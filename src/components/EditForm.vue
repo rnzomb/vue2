@@ -2,8 +2,8 @@
 
 <b-container>
     <b-form @submit.prevent="onSubmit">
-      <TextInput v-model="name" horizontalLabel :required="true" id="firstName" label="Name" description="Enter your name"></TextInput>
-      <DateInput v-model="date" horizontalLabel :required="true" id="Date" label="Date" description="Enter your Date"></DateInput>
+      <TextInput v-model="name" :required="true" id="firstName" label="Name" description="Enter your name"></TextInput>     <!--horizontallabel - label sverhu-->
+      <DateInput v-model="date" :required="true" id="Date" label="Date" description="Enter your Date"></DateInput>
 
       <template v-if="id!= undefined"> 
         <b-button class="top-cover" variant="success" pill type="submit">
