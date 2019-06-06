@@ -17,7 +17,7 @@
         <b-col class="text-right">
           <div :class="getClass">
             <b-link :to="`/edit/${id}`">
-                {{date}}
+                {{date | moment("D.MM.YYYY")}}
             </b-link>
           </div>
         </b-col>

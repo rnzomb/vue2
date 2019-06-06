@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 import uuid from "uuid"
 import TodoItem from "@/components/TodoItem"
 export default {
@@ -28,7 +29,15 @@ export default {
   },
   computed:{
     items() {
-      return this.$store.getters.getTodos
+      const items = this.$store.getters.getTodos
+      items.sort(function(a, b) {
+        const x = a.name.toLowerCase()
+        const y = b.name.toLowerCase()
+        if (x < y) return -1
+        if (x > y) return 1
+        return 0
+      })      
+      return items
     }
   },
 
