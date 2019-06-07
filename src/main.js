@@ -8,9 +8,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router'
 import i18n from '@/i18n.js' 
 
+import moment from 'vue-moment'
+
+
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-Vue.use(require('vue-moment'));
+Vue.use(moment);
 
 new Vue({
   i18n,

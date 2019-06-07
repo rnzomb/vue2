@@ -2,8 +2,8 @@
 
 <b-container>
     <b-form @submit.prevent="onSubmit">
-      <TextInput v-model="name" :required="true" id="firstName" :label="fieldName" :description="msgName"></TextInput>     <!--horizontallabel - label sverhu-->
-      <DateInput v-model="date" :required="true" id="Date" :label="fieldDate" :description="msgDate"></DateInput>
+      <TextInput v-model="name" :required="true" id="firstName" :label="fieldName" :description="msgName" :min-length="3" :max-length="10"/>     <!--horizontallabel - label sverhu-->
+      <DateInput v-model="date" :required="true" id="Date" :label="fieldDate" :description="msgDate"/>
 
       <template v-if="id!= undefined"> 
         <b-button class="top-cover" variant="success" pill type="submit">
@@ -28,7 +28,7 @@ import VIcon from "vue-awesome/components/Icon"
 import "vue-awesome/icons/edit"
 import "vue-awesome/icons/plus"
 import uuid from "uuid"
-
+import moment from "moment"
 export default {
   name: "EditForm",
   components: {
@@ -45,10 +45,21 @@ export default {
   },
   methods: {
     onSubmit() {
+   
+
+      if (!this.validateName(this.name)) {
+        alert('Name is incorrect!')
+        return
+      }
+      if (!this.validateDate(this.date)) {
+        alert('Date must be between 2000 and 2020')
+        return
+      }
+
       const newItem = {
         id: this.id === undefined ? uuid.v4() : this.id,
         name: this.name,
-        date: this.date,
+        date: moment(this.date).toDate(),
         done: this.done
       }
 
@@ -59,6 +70,14 @@ export default {
       }
       this.$router.push('/')
     },
+    validateName(v) {
+      return /^[\0-9a-zA-Z ]+$/.test(v)
+
+    },
+    validateDate(dat) {
+      return (moment(dat).isAfter('2000-01-01') && moment(dat).isBefore('2020-01-01'))
+      
+    }
   },
   computed:{
     id() {

@@ -6,7 +6,8 @@
 
   "head_about": "Страница О нас",
 
-  
+  "diag_delete": "Вы уверены,что хотите удалить?",
+
   "field_name": "Имя",
   "field_age": "Возраст",
   "field_email": "Э-мэйл",

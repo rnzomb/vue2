@@ -28,7 +28,7 @@
  
     </b-row>
     
-    <b-modal @ok="delElement" v-model="modalShow">Vy uvereny, udalit?!</b-modal>
+    <b-modal @ok="delElement" v-model="modalShow">{{$t('diag_delete')}}</b-modal>
   </b-container>
  
 </template>
