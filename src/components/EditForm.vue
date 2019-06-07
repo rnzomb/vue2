@@ -3,8 +3,8 @@
 <b-container>
     <b-form @submit.prevent="onSubmit">
       <TextInput v-model="name" :required="true" id="firstName" :label="fieldName" :description="msgName" :min-length="3" :max-length="10"/>     <!--horizontallabel - label sverhu-->
+      <p>{{errorMsg}}</p>
       <DateInput v-model="date" :required="true" id="Date" :label="fieldDate" :description="msgDate"/>
-
       <template v-if="id!= undefined"> 
         <b-button class="top-cover" variant="success" pill type="submit">
           <v-icon name="edit"/>
@@ -40,19 +40,18 @@ export default {
     return {
       name: undefined,
       date: undefined,
-      done: false
+      done: false,
+      errorMsg: undefined
     }
   },
   methods: {
     onSubmit() {
-   
-
       if (!this.validateName(this.name)) {
-        alert('Name is incorrect!')
+        this.errorMsg='Error Name'       
         return
       }
       if (!this.validateDate(this.date)) {
-        alert('Date must be between 2000 and 2020')
+        this.errorMsg='Error Date'
         return
       }
 
@@ -75,9 +74,13 @@ export default {
 
     },
     validateDate(dat) {
-      return (moment(dat).isAfter('2000-01-01') && moment(dat).isBefore('2020-01-01'))
-      
-    }
+      if (/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/.test(dat)){
+        const date = moment(dat)
+        return date.isAfter('2000-01-01') && date.isBefore('2020-01-01')
+      }
+      return false
+      }
+    
   },
   computed:{
     id() {
@@ -93,7 +96,7 @@ export default {
     },
     msgDate() {
       return this.$i18n.t('msg_date')
-    }
+    }  
   },
     mounted() {
       if (this.id !== undefined){
