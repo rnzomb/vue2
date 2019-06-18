@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router'
 import i18n from '@/i18n.js' 
 import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 import moment from 'vue-moment'
 
@@ -15,7 +16,7 @@ import moment from 'vue-moment'
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 Vue.use(moment)
-Vue.use(axios)
+Vue.use(VueAxios, axios)
 
 new Vue({
   i18n,

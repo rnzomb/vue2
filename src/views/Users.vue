@@ -1,8 +1,9 @@
 <template>
   <div class="text-center font-weight-bold">
     <h1>{{ $t('head_users')}}</h1>
-  
-  {{ $t('field_name')}}
+    <hr>
+    <b-table striped hover :items="items"></b-table>
+     {{ items }}
   </div>
 </template>
 
@@ -12,8 +13,15 @@ export default {
   name: "Users",
   data() {
     return {
-
+      items: []
     }
-  }
+  },
+  mounted () {
+    this.axios
+      .get('https://reqres.in/api/users/?page=2')
+      .then(response => (this.items = response))
+      console.log(this.items)
+    
+  } 
 }
 </script>
