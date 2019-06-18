@@ -5,6 +5,7 @@
       <b-button to="/about">{{$t('menu_about')}}</b-button> |  
       <b-button to="/add">{{$t('menu_add')}}</b-button>  |
       <b-button to="/profile/">{{$t('menu_prof')}}</b-button> |
+      <b-button to="/users/">{{$t('menu_users')}}</b-button> |
       <b-button :variant="getLangClass('en')" @click.prevent="setLanguage('en')">English</b-button> |
       <b-button :variant="getLangClass('ru')" @click.prevent="setLanguage('ru')">Russian</b-button>
       <hr>

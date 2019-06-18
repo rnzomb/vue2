@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import PageNotFound from '@/views/PageNotFound'
 import EditPage from '@/views/EditPage'
 import Profile from '@/views/Profile'
+import Users from '@/views/Users'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
       path: '/profile',
       name: 'profilePage',
       component: Profile
+    },
+    {
+      path: '/users',
+      name: 'userspage',
+      component: Users
     }
 
   ]

@@ -1,5 +1,10 @@
 <template>
-  <b-form-group :label-cols-sm="horizontalLabel ? '2': undefined" :label="label" :label-for="id" :description="description">
+  <b-form-group :label-cols-sm="horizontalLabel ? '2': undefined" 
+      :label="label" 
+      :label-for="id" 
+      :description="description" 
+      :invalid-feedback="invalidFeedback"
+      :state="state">
     <b-form-input v-rounded @input="onInput" 
     :value="value" 
     :type="type" 
@@ -7,7 +12,8 @@
     :id="id" 
     :name="name" 
     :minlength="minLength" 
-    :maxlength="maxLength"/>
+    :maxlength="maxLength"
+    :state="state"/>
   </b-form-group>
 </template>
 
@@ -15,6 +21,11 @@
 export default {
   name: "TextInput",
   props: {
+    validate: {
+      type: Function,
+      required: false,
+      default: undefined 
+    },
     minLength: {
       type: Number,
       required: false,
@@ -61,6 +72,16 @@ export default {
     horizontalLabel: {
       type: Boolean,
       required: false
+    }
+  },
+  computed: {
+    invalidFeedback(){
+      const result = this.validate === undefined ? true : this.validate(this.value)
+      return result === true ? undefined : result
+    },
+    state(){
+      return this.validate === undefined ? undefined : this.validate(this.value) === true
+      
     }
   },
   directives: {

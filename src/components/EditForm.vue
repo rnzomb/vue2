@@ -2,7 +2,11 @@
 
 <b-container>
     <b-form @submit.prevent="onSubmit">
-      <TextInput v-model="name" :required="true" id="firstName" :label="fieldName" :description="msgName" :min-length="3" :max-length="10"/>     <!--horizontallabel - label sverhu-->
+      <TextInput v-model="name" 
+      :required="true" id="firstName" 
+      :label="fieldName" :description="msgName"  
+      :validate="validateName"
+      :max-length="10" />     <!--horizontallabel - label sverhu-->
       <p>{{errorMsg}}</p>
       <DateInput v-model="date" :required="true" id="Date" :label="fieldDate" :description="msgDate"/>
       <template v-if="id!= undefined"> 
@@ -38,7 +42,7 @@ export default {
   },
   data() {
     return {
-      name: undefined,
+      name: '',
       date: undefined,
       done: false,
       errorMsg: undefined
@@ -70,7 +74,7 @@ export default {
       this.$router.push('/')
     },
     validateName(v) {
-      return /^[\0-9a-zA-Z ]+$/.test(v)
+      return v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
 
     },
     validateDate(dat) {
@@ -80,7 +84,6 @@ export default {
       }
       return false
       }
-    
   },
   computed:{
     id() {
@@ -91,12 +94,14 @@ export default {
     },
     fieldDate() {
       return this.$i18n.t('field_date')
-    },msgName() {
+    },
+    msgName() {
       return this.$i18n.t('msg_name')
     },
     msgDate() {
       return this.$i18n.t('msg_date')
-    }  
+    }
+  
   },
     mounted() {
       if (this.id !== undefined){
