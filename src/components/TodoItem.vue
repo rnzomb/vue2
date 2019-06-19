@@ -78,10 +78,6 @@ export default {
 .completed {
   text-decoration-line: line-through;
 }
-.item
-{
-  
-}
 .item:hover {
   background-color:#3ADF00;
 }

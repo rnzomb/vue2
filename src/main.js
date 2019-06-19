@@ -14,7 +14,6 @@ import moment from 'vue-moment'
 
 
 Vue.use(BootstrapVue)
-Vue.config.productionTip = false
 Vue.use(moment)
 Vue.use(VueAxios, axios)
 
