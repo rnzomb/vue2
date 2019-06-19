@@ -2,8 +2,8 @@
   <div class="text-center font-weight-bold">
     <h1>{{ $t('head_users')}}</h1>
     <hr>
-    <b-table striped hover :items="items"></b-table>
-     {{ items }}
+    <b-table striped hover :user="users"></b-table>
+     {{ users }}
   </div>
 </template>
 
@@ -13,15 +13,18 @@ export default {
   name: "Users",
   data() {
     return {
-      items: []
+      fields: ['first_name', 'last_name', 'age'],
+      users: []
     }
   },
   mounted () {
-    this.axios
-      .get('https://reqres.in/api/users/?page=2')
-      .then(response => (this.items = response))
-      console.log(this.items)
-    
-  } 
+    this.$http.get('https://reqres.in/api/users?page=2')
+     .then(response => {
+       console.log(response.data)
+       this.users = response.data.data
+     })
+     .catch(error => console.log(error))
+   }
 }
+
 </script>
