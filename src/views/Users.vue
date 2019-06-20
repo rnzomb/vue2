@@ -20,8 +20,8 @@
 
       <template slot="actions" slot-scope="row">
         
-        <b-button @click="onUpdate(row.item.id)" type="button"><v-icon name="edit"/></b-button>
-        <b-button @click="onDelete(row.item.id)" type="button"><v-icon name="trash-alt"/></b-button>
+        <b-button @click="onUpdate(row.item.id)" class="float-left" variant="success" pill type="button"><v-icon name="edit"/></b-button>
+        <b-button @click="onDelete(row.item.id)" class="float-right" variant="danger" pill type="button"><v-icon name="trash-alt"/></b-button>
         <b-modal name="delUser" @ok="delUser" v-model="deleteModalShow">{{$t('diag_delete')}}</b-modal>
       </template>
 
@@ -45,18 +45,16 @@
     </b-table>
     
     <b-form @submit.prevent="updateUser" :hidden="hideUpdateForm">
-        <TextInput v-model="firstName" :required="true" id="firstName" :label="fieldName" :description="msgName" 
+        <TextInput input-class="text-center" :validate="validateName" v-model="firstName" :required="true" id="firstName" :label="fieldName" :description="msgName" 
         :min-length="3" :max-length="10"> </TextInput>
-        <TextInput v-model="lastName" :required="true" id="lastName" :label="fieldLastName" :description="msgLastName" 
+        <TextInput input-class="text-center" :validate="validateName" v-model="lastName" :required="true" id="lastName" :label="fieldLastName" :description="msgLastName" 
         :min-length="3" :max-length="10"> </TextInput>
-        <EmailInput v-model="email" :required="true" id="email" :label="fieldEmail" :description="msgEmail"></EmailInput>
-        <b-button variant="success"><v-icon name="plus" scale="2" spin/></b-button>
-        <b-button class="btn btn-danger" pill type="cancel">
-           <v-icon label="No Photos">
-           <v-icon name="plus"></v-icon>
-           <v-icon name="ban" scale="2" class="alert"></v-icon>
-           </v-icon>
-        </b-button>
+        <EmailInput input-class="text-center" v-model="email" :required="true" id="email" :label="fieldEmail" :description="msgEmail"></EmailInput>
+        <b-col>
+          <b-button class="m-200" variant="success" type="submit"><v-icon name="save" scale="3"/></b-button>
+          <a>.|.</a>
+          <b-button @click="onCancel()" class="top-cover" variant="danger"><v-icon name="save" scale="3"/></b-button>
+        </b-col> 
     </b-form>
   </div>
 </template>
@@ -120,6 +118,9 @@ export default {
     this.getData()
   },   
   methods: {
+    onCancel() {
+      this.hideUpdateForm = !this.hideUpdateForm
+    },
     onDelete(id) {
       this.userId = id
       this.deleteModalShow = true
@@ -159,7 +160,7 @@ export default {
       
     },
     validateName(v) {
-      return v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
+      return v === undefined ? true : v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
     }
   }
 }

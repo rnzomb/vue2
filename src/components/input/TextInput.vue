@@ -6,6 +6,7 @@
       :invalid-feedback="invalidFeedback"
       :state="state">
     <b-form-input v-rounded @input="onInput" 
+    :class="inputClass"
     :value="value" 
     :type="type" 
     :required="required" 
@@ -21,6 +22,11 @@
 export default {
   name: "TextInput",
   props: {
+    inputClass: {
+      type: String,
+      required: false,
+      default: undefined
+    },
     validate: {
       type: Function,
       required: false,
