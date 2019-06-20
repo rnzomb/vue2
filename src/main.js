@@ -17,6 +17,12 @@ Vue.use(BootstrapVue)
 Vue.use(moment)
 Vue.use(VueAxios, axios)
 
+axios.defaults.headers = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest'
+};
+
 new Vue({
   i18n,
   store,

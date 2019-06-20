@@ -68,11 +68,6 @@ export default {
     onSubmit(){
       console.log(this.form)
     },
-    /*
-    checkTitle(v){
-      v.length
-    },
-    */
     validateName(v) {
       return v === undefined ? true : v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
     },

@@ -11,6 +11,7 @@
   "diag_delete": "Are you sure to delete?",
   
   "field_name": "Name",
+  "field_lastName": "Last Name",
   "field_age": "Age",
   "field_email": "Email",
   "field_tel": "Phone",
@@ -18,6 +19,7 @@
   "field_count": "Count",
 
   "msg_name": "Enter your name",
+  "msg_lastName": "Enter your last name",
   "msg_age": "Enter your age",
   "msg_email": "Enter your Email",
   "msg_tel": "Enter your phone number",
