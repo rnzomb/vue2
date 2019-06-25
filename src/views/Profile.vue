@@ -69,14 +69,14 @@ export default {
       console.log(this.form)
     },
     validateName(v) {
-      return v === undefined ? true : v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
+      return v === undefined ? true : v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngName')
     },
     validateAge(a){
       console.log(a)
-      return a === undefined ? true : a < 110 ? true : this.$i18n.t('msg_wrngage')
+      return a === undefined ? true : a < 110 ? true : this.$i18n.t('msg_wrngAge')
     },
     validatePhone (p){
-      return p === undefined ? true : p.length >= 3 && /^[0-9 +()]+$/.test(p) ? true : this.$i18n.t('msg_wrngphone')
+      return p === undefined ? true : p.length >= 3 && /^[0-9 +()]+$/.test(p) ? true : this.$i18n.t('msg_wrngPhone')
     }
   }
 }

@@ -25,11 +25,9 @@
         <b-modal name="delUser" @ok="delUser" v-model="deleteModalShow">{{$t('diag_delete')}}</b-modal>
       </template>
 
-
-
       <template slot="show_details" slot-scope="row">
         <b-form-checkbox v-model="row.detailsShowing" @change="row.toggleDetails">
-          Show avatar
+          {{ $t('btn_avatar')}}
         </b-form-checkbox>
       </template>
 
@@ -43,9 +41,10 @@
         </b-card>
       </template>
     </b-table>
+    <p>{{errorMsg}}</p>
     
     <b-form @submit.prevent="updateUser" :hidden="hideUpdateForm">
-        <TextInput input-class="text-center" :validate="validateName" v-model="firstName" :required="true" id="firstName" :label="fieldName" :description="msgName" 
+        <TextInput input-class="text-center" :validate="validateName" v-model="firstName" :required="true" id="firstName" :label="fieldFirstName" :description="msgName" 
         :min-length="3" :max-length="10"> </TextInput>
         <TextInput input-class="text-center" :validate="validateName" v-model="lastName" :required="true" id="lastName" :label="fieldLastName" :description="msgLastName" 
         :min-length="3" :max-length="10"> </TextInput>
@@ -76,26 +75,31 @@ export default {
     return {
       sortBy: 'last_name',
         sortDesc: true,
-        fields: [
-          { key: 'last_name', sortable: true },
-          { key: 'first_name', sortable: true },
-          { key: 'email', sortable: true },
-          'show_details',
-          { key: 'actions', sortable: false }
-        ],
+        
       items: [],
       deleteModalShow: false,
       hideUpdateForm: true,
       userId: undefined,
       firstName: undefined,
       lastName: undefined,
-      email: undefined
+      email: undefined,
+      errorMsg: undefined
     }
   },
 
   computed: {
-    fieldName() {
-      return this.$i18n.t('field_name')
+    fields() {
+      return [
+        { key: 'first_name', label: this.$i18n.t("field_firstName") },
+        { key: 'last_name', label: this.$i18n.t("field_lastName") },
+        { key: 'email', label: this.$i18n.t('field_email') },
+        { key: 'show_details', label: this.$i18n.t('field_showDetails') },
+        { key: 'actions', label: this.$i18n.t('field_actions') }
+      ]
+    },
+ 
+    fieldFirstName() {
+      return this.$i18n.t('field_firstName')
     },
     fieldLastName() {
       return this.$i18n.t('field_lastName')
@@ -125,6 +129,7 @@ export default {
       this.userId = id
       this.deleteModalShow = true
     },
+
     onUpdate(id) {
       this.userId = id
       this.firstName = this.items.find(x => x.id === id).first_name
@@ -132,21 +137,51 @@ export default {
       this.email = this.items.find(x => x.id === id).email
       this.hideUpdateForm = !this.hideUpdateForm
     },
+
     delUser() {
       console.log(this.userId)
       this.$http.delete(`https://reqres.in/api/users/${this.userId}`)
+      .catch(error => {
+          if (error.response) {
+            this.validateReqStatus(error.response.status)
+          } 
+        })
       this.userId = undefined   
       this.getData()   
     },
+
     getData() {
        this.$http.get('https://reqres.in/api/users')
         .then(response => {
           this.items = response.data.data
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+          if (error.response) {
+            this.validateReqStatus(error.response.status)
+          } 
+
+        })
+    },
+
+    validateReqStatus (status) {  
+      if(status == 404) {
+        this.errorMsg = this.$i18n.t('msg_status404')
+      } else {
+        status >= 400 && status < 500 ? this.errorMsg = this.$i18n.t('msg_status400') : undefined
+        status >= 500 && status < 600 ? this.errorMsg = this.$i18n.t('msg_status500') : undefined
+      }          
     },
     
     updateUser(id) {
+      console.log(this.firstName)
+      if (!this.validateName(this.firstName)) {
+        this.errorMsg='Error Name'       
+        return
+      }
+      if (!this.validateName(this.lastName)) {
+        this.errorMsg='Error Name'       
+        return
+      }
       const userData = [
            'first_name: ' + this.firstName,
            'last_name: ' + this.lastName,
@@ -154,13 +189,17 @@ export default {
       ]
       this.$http.put(`https://reqres.in/api/users/${this.userId}`, {userData})
         .then(response => console.log(response))
-        .catch(error => console.log(error))
-      this.userId = undefined
-      this.getData()  
-      
+        .catch(error => {
+          if (error.response) {
+            this.validateReqStatus(error.response.status)
+          }
+          this.userId = undefined
+          this.getData()  
+        })
     },
+    
     validateName(v) {
-      return v === undefined ? true : v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
+      return v === undefined ? true : v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngName')
     }
   }
 }

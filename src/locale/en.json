@@ -11,7 +11,10 @@
   "diag_delete": "Are you sure to delete?",
   
   "field_name": "Name",
+  "field_firstName": "First Name",
   "field_lastName": "Last Name",
+  "field_showDetails": "Show Details",
+  "field_actions": "Actions",
   "field_age": "Age",
   "field_email": "Email",
   "field_tel": "Phone",
@@ -24,10 +27,14 @@
   "msg_email": "Enter your Email",
   "msg_tel": "Enter your phone number",
   "msg_date": "Enter your date",
-  "msg_wrngname": "Length from 3 to 10, with no scpecial characters",
-  "msg_wrngage": "Can't believe that's your age",
-  "msg_wrngphone": "Incorrect phone number",
+  "msg_wrngName": "Length from 3 to 10, with no scpecial characters",
+  "msg_wrngAge": "Can't believe that's your age",
+  "msg_wrngPhone": "Incorrect phone number",
+  "msg_status404": "Page not found",
+  "msg_status400": "Request is incorrect",
+  "msg_status500": "Server error",
   "msg_thank": "Thank you",
+  "btn_avatar": "Show avatar",
   "btn_subm": "Submit"
 
 

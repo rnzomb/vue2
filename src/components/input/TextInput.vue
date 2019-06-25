@@ -5,7 +5,7 @@
       :description="description" 
       :invalid-feedback="invalidFeedback"
       :state="state">
-    <b-form-input v-rounded @input="onInput" 
+    <b-form-input @input="onInput" 
     :class="inputClass"
     :value="value" 
     :type="type" 
@@ -89,14 +89,14 @@ export default {
       return this.validate === undefined ? undefined : this.validate(this.value) === true
       
     }
-  },
+  },/*
   directives: {
     rounded: {
       inserted: function (el) {
         el.style.borderRadius = '50%'
       }
     }
-  },
+  },*/
   methods: {
     onInput(v) {
       this.$emit('input',v)

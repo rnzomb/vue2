@@ -74,7 +74,7 @@ export default {
       this.$router.push('/')
     },
     validateName(v) {
-      return v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngname')
+      return v.length >= 3 && /^[0-9a-zA-Z ]+$/.test(v) ? true : this.$i18n.t('msg_wrngName')
 
     },
     validateDate(dat) {
