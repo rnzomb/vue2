@@ -15,7 +15,7 @@
         </b-button>
       </template>
       <template v-else>
-        <b-button class="top-cover" variant="success" pill type="submit">
+        <b-button id="formSubmit" class="top-cover" variant="success" pill type="submit">
           <v-icon name="plus"/>
         </b-button>
       </template>
@@ -50,15 +50,15 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (!this.validateName(this.name) !== true) {
+      if (this.validateName(this.name) !== true) {
         this.errorMsg='Error Name'       
         return
       }
-      if (!this.validateDate(this.date) !== true) {
+   /*   if (this.validateDate(this.date) !== true) {
         this.errorMsg='Error Date'
         return
       }
-
+*/
       const newItem = {
         id: this.id === undefined ? uuid.v4() : this.id,
         name: this.name,
