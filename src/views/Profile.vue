@@ -60,7 +60,7 @@ export default {
     },
     msgPhone() {
       return this.$i18n.t('msg_tel')
-    },
+    }
     
 
   },
