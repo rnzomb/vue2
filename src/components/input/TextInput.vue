@@ -14,6 +14,7 @@
     :name="name" 
     :minlength="minLength" 
     :maxlength="maxLength"
+    :size="size"
     :state="state"/>
   </b-form-group>
 </template>
@@ -22,6 +23,11 @@
 export default {
   name: "TextInput",
   props: {
+    size: {
+      type: String,
+      required: false,
+      default: undefined
+    },
     inputClass: {
       type: String,
       required: false,

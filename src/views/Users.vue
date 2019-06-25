@@ -1,61 +1,66 @@
 <template>
-  <div class="text-center font-weight-bold">
-    <h1>{{ $t('head_users')}}</h1>
-    <hr>
-    <b-table
-      :items="items"
-      :fields="fields"
-      :sort-by.sync="sortBy"
-      :sort-desc.sync="sortDesc"
-      bordered head-variant="light"
-      striped hover
-    >
-      <template slot="email" slot-scope="mail">
-         <a :href="mail.item.email">{{ mail.item.email }}</a>
-      </template>
+  <b-container>
+    <div class="text-center font-weight-bold">
+      <h1>{{ $t('head_users')}}</h1>
+      <hr>
+      <b-table
+        :items="items"
+        :fields="fields"
+        :sort-by.sync="sortBy"
+        :sort-desc.sync="sortDesc"
+        bordered head-variant="light"
+        striped hover
+      >
+        <template slot="email" slot-scope="mail">
+          <a :href="mail.item.email">{{ mail.item.email }}</a>
+        </template>
 
-  <!--    <template slot="avatar" slot-scope="row">
-        <img :src="row.value" />
-      </template>  -->
+    <!--    <template slot="avatar" slot-scope="row">
+          <img :src="row.value" />
+        </template>  -->
 
-      <template slot="actions" slot-scope="row">
+        <template slot="actions" slot-scope="row">
+          
+          <b-button @click="onUpdate(row.item.id)" class="float-left" variant="success" pill type="button"><v-icon name="edit"/></b-button>
+          <b-button @click="onDelete(row.item.id)" class="float-right" variant="danger" pill type="button"><v-icon name="trash-alt"/></b-button>
+          <b-modal name="delUser" @ok="delUser" v-model="deleteModalShow">{{$t('diag_delete')}}</b-modal>
+        </template>
+
+        <template slot="show_details" slot-scope="row">
+          <b-form-checkbox v-model="row.detailsShowing" @change="row.toggleDetails">
+            {{ $t('btn_avatar')}}
+          </b-form-checkbox>
+        </template>
+
+        <template slot="row-details" slot-scope="data">
+          <b-card 
+          :img-src="data.item.avatar"
+          img-alt="Image"
+          style="max-width: 20rem;"
+          class="mb-2"
+          >  
+          </b-card>
+        </template>
+      </b-table>
+      <p>{{errorMsg}}</p>
+      <b-row class="justify-content-center">
+        <b-col cols="6">
+          <b-form @submit.prevent="updateUser" :hidden="hideUpdateForm">
+            <TextInput input-class="text-center" :validate="validateName" v-model="firstName" :required="true" id="firstName" :label="fieldFirstName" :description="msgName" 
+            :min-length="3" :max-length="10" size="20"> </TextInput>
+            <TextInput input-class="text-center" :validate="validateName" v-model="lastName" :required="true" id="lastName" :label="fieldLastName" :description="msgLastName" 
+            :min-length="3" :max-length="10"> </TextInput>
+            <EmailInput input-class="text-center" v-model="email" :required="true" id="email" :label="fieldEmail" :description="msgEmail"></EmailInput>
         
-        <b-button @click="onUpdate(row.item.id)" class="float-left" variant="success" pill type="button"><v-icon name="edit"/></b-button>
-        <b-button @click="onDelete(row.item.id)" class="float-right" variant="danger" pill type="button"><v-icon name="trash-alt"/></b-button>
-        <b-modal name="delUser" @ok="delUser" v-model="deleteModalShow">{{$t('diag_delete')}}</b-modal>
-      </template>
-
-      <template slot="show_details" slot-scope="row">
-        <b-form-checkbox v-model="row.detailsShowing" @change="row.toggleDetails">
-          {{ $t('btn_avatar')}}
-        </b-form-checkbox>
-      </template>
-
-      <template slot="row-details" slot-scope="data">
-        <b-card 
-         :img-src="data.item.avatar"
-         img-alt="Image"
-         style="max-width: 20rem;"
-         class="mb-2"
-        >  
-        </b-card>
-      </template>
-    </b-table>
-    <p>{{errorMsg}}</p>
-    
-    <b-form @submit.prevent="updateUser" :hidden="hideUpdateForm">
-        <TextInput input-class="text-center" :validate="validateName" v-model="firstName" :required="true" id="firstName" :label="fieldFirstName" :description="msgName" 
-        :min-length="3" :max-length="10"> </TextInput>
-        <TextInput input-class="text-center" :validate="validateName" v-model="lastName" :required="true" id="lastName" :label="fieldLastName" :description="msgLastName" 
-        :min-length="3" :max-length="10"> </TextInput>
-        <EmailInput input-class="text-center" v-model="email" :required="true" id="email" :label="fieldEmail" :description="msgEmail"></EmailInput>
-        <b-col>
-          <b-button class="m-200" variant="success" type="submit"><v-icon name="save" scale="3"/></b-button>
-          <a>.|.</a>
-          <b-button @click="onCancel()" class="top-cover" variant="danger"><v-icon name="save" scale="3"/></b-button>
-        </b-col> 
-    </b-form>
-  </div>
+            <b-button class="" variant="success" type="submit"><v-icon name="save" scale="3"/></b-button>
+            <a>.|.</a>
+            <b-button @click="onCancel()" class="top-cover" variant="danger"><v-icon name="save" scale="3"/></b-button>
+              
+          </b-form>
+        </b-col>
+      </b-row> 
+    </div>
+  </b-container>
 </template>
 
 
