@@ -174,12 +174,10 @@ export default {
     
     updateUser(id) {
       console.log(this.firstName)
-      if (!this.validateName(this.firstName)) {
-        this.errorMsg='Error Name'       
+      if (this.validateName(this.firstName) !== true) {    
         return
       }
-      if (!this.validateName(this.lastName)) {
-        this.errorMsg='Error Name'       
+      if (this.validateName(this.lastName) !== true) {     
         return
       }
       const userData = [

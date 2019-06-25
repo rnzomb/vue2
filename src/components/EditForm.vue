@@ -50,11 +50,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (!this.validateName(this.name)) {
+      if (!this.validateName(this.name) !== true) {
         this.errorMsg='Error Name'       
         return
       }
-      if (!this.validateDate(this.date)) {
+      if (!this.validateDate(this.date) !== true) {
         this.errorMsg='Error Date'
         return
       }
