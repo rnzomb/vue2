@@ -44,7 +44,7 @@
       <p>{{errorMsg}}</p>
       <b-row class="justify-content-center">
         <b-col cols="6">
-          <b-form @submit.prevent="updateUser" :hidden="hideUpdateForm">
+          <b-form @submit.prevent="updateUser" id="userDataSubmit" :hidden="hideUpdateForm">
             <TextInput input-class="text-center" :validate="validateName" v-model="firstName" :required="true" id="firstName" :label="fieldFirstName" :description="msgName" 
             :min-length="3" :max-length="10" size="20"> </TextInput>
             <TextInput input-class="text-center" :validate="validateName" v-model="lastName" :required="true" id="lastName" :label="fieldLastName" :description="msgLastName" 

@@ -17,6 +17,7 @@ describe('New Test', function() {
     //Users
     cy.contains('Users').click()
     cy.url().should('include', '/users')
+    cy.url().should('eq', 'http://localhost:8080/users/')
     cy.wait(500)
 
     cy.get('label.custom-control-label').dblclick({ multiple: true })
@@ -27,12 +28,13 @@ describe('New Test', function() {
 
     cy.wait(500)
     cy.get('div.mb-2').find('img')
- 
+    // button delete
     cy.get('button.float-right').first().click()
 
     cy.wait(500)
     cy.get('.modal-footer > button.btn.btn-primary').click()
-
+    
+    //button edit
     cy.get('button.float-left').first().click()
 
 
@@ -55,6 +57,12 @@ describe('New Test', function() {
        .type('ttt@ttt.rr')
        .should('have.value', 'ttt@ttt.rr')
 
+       //within
+    cy.get('#userDataSubmit').within(() => {
+    cy.get('input:first').should('have.attr', 'required', 'required')
+    cy.get('input:last').should('have.attr', 'id', 'email')
+    })
+    
 
   })
 })
