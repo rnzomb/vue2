@@ -11,7 +11,6 @@ describe('New Test', function() {
     cy.request('PUT', 'https://reqres.in/api/users/2', {userData})
     .its('status').should('eq', 200)
   
-
     cy.visit('http://localhost:8080/')
 
     //Users
@@ -33,17 +32,25 @@ describe('New Test', function() {
 
     cy.wait(500)
     cy.get('.modal-footer > button.btn.btn-primary').click()
-    
+
     //button edit
     cy.get('button.float-left').first().click()
 
 
     cy.get('#firstName')
        .should('have.value', 'Emma')
-       .clear()
+       .and('have.css', 'border-color')
+       .and('eq', 'rgb(40, 167, 69)') 
+    cy.get('#firstName') 
+       .its('minlength')
+       .should('be', 3)
+  
+    cy.get('#firstName')
+        .clear()
        .should('have.value', '')
        .type('Hello')
        .should('have.value', 'Hello')
+
     cy.get('#lastName')
        .should('have.value', 'Wong')
        .clear()
@@ -62,7 +69,15 @@ describe('New Test', function() {
     cy.get('input:first').should('have.attr', 'required', 'required')
     cy.get('input:last').should('have.attr', 'id', 'email')
     })
-    
+    .should('be.visible')
 
+    cy.get('.btn-success').click()
+    cy.get('.btn-danger').click()
+    
+    cy.title().should('include', 'vue2')
+    cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
+    cy.window().should('have.property', 'top')
+    cy.viewport('macbook-15')
+    cy.wait(200)
   })
 })
