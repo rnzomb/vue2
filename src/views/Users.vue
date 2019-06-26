@@ -22,8 +22,7 @@
         <template slot="actions" slot-scope="row">
           
           <b-button @click="onUpdate(row.item.id)" class="float-left" variant="success" pill type="button"><v-icon name="edit"/></b-button>
-          <b-button @click="onDelete(row.item.id)" class="float-right" variant="danger" pill type="button"><v-icon name="trash-alt"/></b-button>
-          <b-modal name="delUser" @ok="delUser" v-model="deleteModalShow">{{$t('diag_delete')}}</b-modal>
+          <b-button @click="onDelete(row.item.id)" class="float-right" variant="danger" pill type="button"><v-icon name="trash-alt"/></b-button>          
         </template>
 
         <template slot="show_details" slot-scope="row">
@@ -60,6 +59,7 @@
         </b-col>
       </b-row> 
     </div>
+    <b-modal name="delUser" @ok="delUser" v-model="deleteModalShow">{{$t('diag_delete')}}</b-modal>
   </b-container>
 </template>
 
