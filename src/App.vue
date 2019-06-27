@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <div class="text-center" id="nav">
-      <b-button to="/">{{$t('menu_home')}}</b-button> |
-      <b-button to="/about">{{$t('menu_about')}}</b-button> |  
-      <b-button to="/add">{{$t('menu_add')}}</b-button>  |
-      <b-button to="/profile/">{{$t('menu_prof')}}</b-button> |
-      <b-button to="/users/">{{$t('menu_users')}}</b-button> |
-      <b-button :variant="getLangClass('en')" @click.prevent="setLanguage('en')">English</b-button> |
-      <b-button :variant="getLangClass('ru')" @click.prevent="setLanguage('ru')">Russian</b-button>
+      <b-navbar id="navButtons" class="justify-content-center" toggleable="lg">
+          <b-button class="mr-2" to="/">{{$t('menu_home')}}</b-button>
+          <b-button class="mr-2" to="/about">{{$t('menu_about')}}</b-button>  
+          <b-button class="mr-2" to="/add">{{$t('menu_add')}}</b-button>
+          <b-button class="mr-2" to="/profile/">{{$t('menu_prof')}}</b-button>
+          <b-button class="mr-2" to="/users/">{{$t('menu_users')}}</b-button>
+          <b-button class="ml-5" :variant="getLangClass('en')" @click.prevent="setLanguage('en')">English</b-button>
+          <b-button class="mx-2" :variant="getLangClass('ru')" @click.prevent="setLanguage('ru')">Russian</b-button>
+      </b-navbar>
       <hr>
     </div>
     <transition name="fade" mode="out-in">
@@ -56,6 +58,10 @@ export default {
  {
    transform: scale(0.8);
    opacity: 0;
+}
+
+#navButtons {
+  background-color: blanchedalmond;
 }
 
 </style>
