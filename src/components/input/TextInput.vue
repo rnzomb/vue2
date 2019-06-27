@@ -5,17 +5,17 @@
       :description="description" 
       :invalid-feedback="invalidFeedback"
       :state="state">
-    <b-form-input @input="onInput" 
-    :class="inputClass"
-    :value="value" 
-    :type="type" 
-    :required="required" 
-    :id="id" 
-    :name="name" 
-    :minlength="minLength" 
-    :maxlength="maxLength"
-    :size="size"
-    :state="state"/>
+        <b-form-input @input="onInput" 
+        :class="inputClass"
+        :value="value" 
+        :type="type" 
+        :required="required" 
+        :id="id" 
+        :name="name" 
+        :minlength="minLength" 
+        :maxlength="maxLength"
+        :size="size"
+        :state="state"/>
   </b-form-group>
 </template>
 

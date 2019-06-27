@@ -1,5 +1,3 @@
-import { equal } from "assert";
-
 describe('My First Test', function() {
   it('lang!', function() {
     cy.visit('http://localhost:8080/')

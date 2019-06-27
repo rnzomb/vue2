@@ -1,6 +1,7 @@
 <template>
 
 <b-container>
+  <b-form-group>
     <b-form @submit.prevent="onSubmit">
       <TextInput v-model="name" 
       :required="true" id="firstName" 
@@ -8,7 +9,8 @@
       :validate="validateName"
       :max-length="10" />     <!--horizontallabel - label sverhu-->
       <p>{{errorMsg}}</p>
-      <DateInput v-model="date" :required="true" id="Date" :label="fieldDate" :description="msgDate"/>
+      <DateInput v-model="date" :required="true" id="Date" :description="msgDate"
+        format="dd-MM-yyyy" typeable/>
       <template v-if="id!= undefined"> 
         <b-button class="top-cover" variant="success" pill type="submit">
           <v-icon name="edit"/>
@@ -21,6 +23,7 @@
       </template>
           
     </b-form>
+  </b-form-group>
   </b-container>
   
 </template>
@@ -62,7 +65,7 @@ export default {
       const newItem = {
         id: this.id === undefined ? uuid.v4() : this.id,
         name: this.name,
-        date: moment(this.date).toDate(),
+        date: this.date,
         done: this.done
       }
 
@@ -108,7 +111,7 @@ export default {
       const items = this.$store.getters.getTodos
       const newItem = items.find(item => item.id === this.id)
       this.name = newItem.name
-      this.date = newItem.date
+      this.date = moment(newItem.date).toDate()
       this.done = newItem.done
     }
   }
