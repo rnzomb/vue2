@@ -69,7 +69,7 @@ describe('New Test', function() {
     cy.get('input:first').should('have.attr', 'required', 'required')
     cy.get('input:last').should('have.attr', 'id', 'email')
     })
-    .should('be.visible')
+      .should('be.visible')
 
     cy.get('.btn-success').click()
     cy.get('.btn-danger').click()

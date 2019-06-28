@@ -3,6 +3,9 @@
 <b-container>
   <b-form-group>
     <b-form @submit.prevent="onSubmit">
+      <template v-if="isUserNotFound"> 
+        <p>{{$t('msg_userNotFound')}}</p>
+      </template>
       <TextInput v-model="name" 
       :required="true" id="firstName" 
       :label="fieldName" :description="msgName"  
@@ -10,7 +13,7 @@
       :max-length="10" />     <!--horizontallabel - label sverhu-->
       <p>{{errorMsg}}</p>
       <DateInput v-model="date" :required="true" id="Date" :description="msgDate"
-        format="dd-MM-yyyy" typeable/>
+        format="dd-MM-yyyy"/>
       <template v-if="id!= undefined"> 
         <b-button class="top-cover" variant="success" pill type="submit">
           <v-icon name="edit"/>
@@ -48,7 +51,8 @@ export default {
       name: '',
       date: undefined,
       done: false,
-      errorMsg: undefined
+      errorMsg: undefined,
+      isUserNotFound: false
     }
   },
   methods: {
@@ -85,7 +89,11 @@ export default {
       const date = moment(dat)
       return date.isAfter('2000-01-01') && date.isBefore('2020-01-01')
       return false
-      }
+    },
+    checkStorageUserId() {
+      return this.$store.getters.getTodos.find(item => item.id === this.id) !== undefined
+    }
+
   },
   computed:{
     id() {
@@ -105,13 +113,17 @@ export default {
     }
   
   },
-    mounted() {
-      if (this.id !== undefined){
-      const items = this.$store.getters.getTodos
-      const newItem = items.find(item => item.id === this.id)
-      this.name = newItem.name
-      this.date = moment(newItem.date).toDate()
-      this.done = newItem.done
+  mounted() {
+    if (this.id !== undefined){
+      if (this.checkStorageUserId()) {  
+        const items = this.$store.getters.getTodos
+        const newItem = items.find(item => item.id === this.id)
+        this.name = newItem.name
+        this.date = moment(newItem.date).toDate()
+        this.done = newItem.done    
+      } else {
+        return this.isUserNotFound = true            
+        }
     }
   }
 }

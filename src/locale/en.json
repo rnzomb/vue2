@@ -33,6 +33,7 @@
   "msg_status404": "Page not found",
   "msg_status400": "Request is incorrect",
   "msg_status500": "Server error",
+  "msg_userNotFound": "User not found",
   "msg_thank": "Thank you",
   "btn_avatar": "Show avatar",
   "btn_subm": "Submit"

@@ -1,25 +1,23 @@
 <template>
-  <b-form-group :label-cols-sm="horizontalLabel ? '2': undefined"
-    :state="state">
-      <datepicker
-        input-class="text-center"
-        bootstrap-styling
-        :inline="false"
-        :typeable="typeable"
-        :format="format"
-        :id="id"
-        :required="required"
-        :placeholder="description"
-        :value="value"
-        :disabled-dates="tate.disabledDates"
-        :highlighted="tate.highlighted"
-        :language="currentLocale"       
-        @input="onSelect"
-      >
-        <div slot="beforeCalendarHeader" class="calender-header">
-        {{$t('msg_date')}}
-        </div>
-      </datepicker>
+  <b-form-group :label-cols-sm="horizontalLabel ? '2': undefined" :state="state">
+    <datepicker
+      input-class="text-center"
+      bootstrap-styling
+      :inline="false"      
+      :format="format"        
+      :id="id"
+      :required="required"
+      :placeholder="description"
+      :value="value"
+      :disabled-dates="tate.disabledDates"
+      :highlighted="tate.highlighted"
+      :language="currentLocale"
+      @selected="onSelect"
+    >
+      <div slot="beforeCalendarHeader" class="calender-header">
+      {{$t('msg_date')}}
+      </div>
+    </datepicker>
   </b-form-group>
 </template>
 >
@@ -56,10 +54,6 @@ export default {
       default: undefined
     },
     horizontalLabel: {
-      type: Boolean,
-      required: false
-    },
-    typeable: {
       type: Boolean,
       required: false
     },

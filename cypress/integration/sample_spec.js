@@ -13,15 +13,15 @@ describe('My First Test', function() {
       .should('have.value', 'Hello')
     
     cy.get('#Date')
-    .type('2005-02-02')
-    .should('have.value', '2005-02-02')
+      .type('2005-02-02')
+      .should('have.value', '2005-02-02')
 
     cy.get('#formSubmit').click()
     //home
     cy.url().should('include', '/')
 
     cy.get('#app')
-    .contains('Hello')
+      .contains('Hello')
 
     //.pause()
     //Add Page
@@ -63,7 +63,7 @@ describe('My First Test', function() {
     // request 
     cy.server()
     cy.route('GET', 'https://reqres.in/api/users')
-    .its('status').should('eq', 200)
+      .its('status').should('eq', 200)
     
   })
 })
