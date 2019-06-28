@@ -136,6 +136,9 @@ export default {
     },
 
     onUpdate(id) {
+      //if(this.userId !== id) {
+      //  this.hideUpdateForm = !this.hideUpdateForm
+      //}
       this.userId = id
       this.firstName = this.items.find(x => x.id === id).first_name
       this.lastName = this.items.find(x => x.id === id).last_name

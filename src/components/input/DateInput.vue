@@ -4,20 +4,28 @@
       <datepicker
         input-class="text-center"
         bootstrap-styling
+        :inline="false"
         :typeable="typeable"
         :format="format"
         :id="id"
         :required="required"
         :placeholder="description"
         :value="value"
+        :disabled-dates="tate.disabledDates"
+        :highlighted="tate.highlighted"
+        :language="currentLocale"       
         @input="onSelect"
       >
+        <div slot="beforeCalendarHeader" class="calender-header">
+        {{$t('msg_date')}}
+        </div>
       </datepicker>
   </b-form-group>
 </template>
 >
 <script> 
 import Datepicker from 'vuejs-datepicker'
+import {ru, en} from 'vuejs-datepicker/dist/locale'
 export default {
   name: "DateInput",
   components: {
@@ -59,8 +67,27 @@ export default {
       type: String,
       required:false,
       default: undefined
-    },
+    }
   
+  },
+  data (){
+    return {
+      tate: {
+        disabledDates: {
+          to: new Date(2019, 5, 8), 
+          days: [6, 0],
+          ranges: [{ 
+            from: new Date(2019, 6, 20),
+            to: new Date(2019, 6, 30)
+          }]
+        },
+        highlighted: {
+          days: [4]
+        }
+      },
+      ru: ru,
+      en: en
+    }
   },
   computed: {
     invalidFeedback(){
@@ -70,12 +97,16 @@ export default {
     state(){
       return this.validate === undefined ? undefined : this.validate(this.value) === true
       
+    },
+    currentLocale() {
+      if(this.$store.getters.getLanguage === 'ru') return ru
+      if(this.$store.getters.getLanguage === 'en') return en      
     }
   },
   methods: {
     onSelect(newDat) {
       this.$emit('input', newDat)      
-    }
+    },
   }
 
 }

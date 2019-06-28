@@ -63,5 +63,10 @@ export default {
 #navButtons {
   background-color: blanchedalmond;
 }
+.mr-2 {
+  background-color:olivedrab;
+  font-weight: 600;
+}
+
 
 </style>

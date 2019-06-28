@@ -57,11 +57,11 @@ export default {
         this.errorMsg='Error Name'       
         return
       }
-   /*   if (this.validateDate(this.date) !== true) {
+      if (this.validateDate(this.date) !== true) {
         this.errorMsg='Error Date'
         return
       }
-*/
+
       const newItem = {
         id: this.id === undefined ? uuid.v4() : this.id,
         name: this.name,
@@ -81,10 +81,9 @@ export default {
 
     },
     validateDate(dat) {
-      if (/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/.test(dat)){
-        const date = moment(dat)
-        return date.isAfter('2000-01-01') && date.isBefore('2020-01-01')
-      }
+        //if (/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/.test(dat)){
+      const date = moment(dat)
+      return date.isAfter('2000-01-01') && date.isBefore('2020-01-01')
       return false
       }
   },
